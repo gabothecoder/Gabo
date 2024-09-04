@@ -1,1 +1,35 @@
+player.onChat("Clear_Fun", function () {
+    mobs.clearEffect(mobs.target(LOCAL_PLAYER))
+})
+player.onChat("Jump_Fun", function () {
+    mobs.applyEffect(LEVITATION, mobs.target(LOCAL_PLAYER), 1, 255)
+    mobs.applyEffect(JUMP_BOOST, mobs.target(LOCAL_PLAYER), 60, 255)
+})
+player.onChat("Invis_fun", function () {
+    mobs.applyEffect(INVISIBILITY, mobs.target(LOCAL_PLAYER), 60, 255)
+})
+player.onChat("Op_Fun", function () {
+    mobs.applyEffect(STRENGTH, mobs.target(LOCAL_PLAYER), 60, 255)
+})
+player.onChat("Hp_fun", function () {
+    mobs.applyEffect(REGENERATION, mobs.target(NEAREST_PLAYER), 60, 255)
+})
+player.onChat("Night_Fun", function () {
+    mobs.applyEffect(NIGHT_VISION, mobs.target(LOCAL_PLAYER), 60, 255)
+})
+player.onChat("Speed_Fun", function () {
+    mobs.applyEffect(SPEED, mobs.target(LOCAL_PLAYER), 60, 255)
+})
+player.onChat("lava_fun", function () {
+    mobs.applyEffect(FIRE_RESISTANCE, mobs.target(LOCAL_PLAYER), 160, 255)
+})
+player.onChat("Super_Heart_fun", function () {
+    mobs.applyEffect(HEALTH_BOOST, mobs.target(LOCAL_PLAYER), 60, 255)
+})
+player.onChat("Tank_fun", function () {
+    mobs.applyEffect(RESISTANCE, mobs.target(LOCAL_PLAYER), 60, 255)
+})
+player.onChat("Fast_Hit_Fun", function () {
+    mobs.applyEffect(HASTE, mobs.target(LOCAL_PLAYER), 60, 183)
+})
 
