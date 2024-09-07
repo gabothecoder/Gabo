@@ -1,0 +1,26 @@
+player.onChat("\\\\cam-pos-@a-minecraft:free", function () {
+    player.execute(
+    "/camera @a set minecraft:free pos " + camera_pos + " facing @a "
+    )
+})
+player.onChat("\\\\cam-pos-set", function () {
+    camera_pos = player.position()
+    player.say("cam-pos set at " + camera_pos)
+})
+player.onChat("\\\\cam-pos-clear-@a", function () {
+    player.execute(
+    "/camera @a clear"
+    )
+})
+player.onChat("\\\\cam-pos-@s-minecraft:free", function () {
+    player.execute(
+    "/camera @s set minecraft:free pos " + camera_pos + " facing @s "
+    )
+})
+player.onChat("\\\\cam-pos-clear-@s", function () {
+    player.execute(
+    "/camera @s clear"
+    )
+})
+let camera_pos: Position = null
+gameplay.title(mobs.target(ALL_PLAYERS), "camera test", "by gabo")
