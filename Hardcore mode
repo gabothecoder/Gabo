@@ -1,0 +1,15 @@
+let dead_players = ""
+player.onDied(function () {
+    if (!(dead_players.isEmpty())) {
+        dead_players = "" + dead_players + "," + player.name()
+    } else {
+        dead_players = player.name()
+    }
+})
+loops.forever(function () {
+    if (dead_players.includes(player.name())) {
+        mobs.kill(
+        mobs.target(LOCAL_PLAYER)
+        )
+    }
+})
