@@ -1,4 +1,38 @@
-blocks.onBlockBroken(YELLOW_WOOL, function () {
+let water_buff = ""
+let speed_buff = ""
+let damage_buff = ""
+let mining_buff = ""
+let spy_buff = ""
+let Buff_owners = ""
+let choose_buff = 0
+player.onTravelled(SWIM_WATER, function () {
+    if (water_buff.includes(player.name())) {
+        mobs.applyEffect(REGENERATION, mobs.target(LOCAL_PLAYER), 1, 10)
+        mobs.applyEffect(HEALTH_BOOST, mobs.target(LOCAL_PLAYER), 1, 10)
+        mobs.applyEffect(SPEED, mobs.target(LOCAL_PLAYER), 1, 10)
+        mobs.applyEffect(STRENGTH, mobs.target(LOCAL_PLAYER), 1, 10)
+    }
+})
+loops.forever(function () {
+    while (speed_buff.includes(player.name())) {
+        mobs.applyEffect(SPEED, mobs.target(LOCAL_PLAYER), 1, 5)
+    }
+    while (damage_buff.includes(player.name())) {
+        mobs.applyEffect(STRENGTH, mobs.target(LOCAL_PLAYER), 1, 3)
+    }
+    while (water_buff.includes(player.name())) {
+        mobs.applyEffect(WATER_BREATHING, mobs.target(LOCAL_PLAYER), 1, 255)
+    }
+    while (mining_buff.includes(player.name())) {
+        mobs.applyEffect(HASTE, mobs.target(LOCAL_PLAYER), 1, 1)
+    }
+    if ((gameplay.isDaylightTime(MIDNIGHT) || gameplay.isDaylightTime(NIGHT)) == true) {
+        if (spy_buff.includes(player.name())) {
+            mobs.applyEffect(NIGHT_VISION, mobs.target(LOCAL_PLAYER), 1, 255)
+        }
+    }
+})
+player.onChat("\\\\buff", function () {
     if (!(Buff_owners.includes(player.name()))) {
         if (Buff_owners.isEmpty()) {
             Buff_owners = player.name()
@@ -46,35 +80,15 @@ blocks.onBlockBroken(YELLOW_WOOL, function () {
         } else {
             Buff_owners = "" + Buff_owners + "," + player.name()
         }
-    }
-})
-loops.forever(function () {
-    if (speed_buff.includes(player.name())) {
-        mobs.applyEffect(SPEED, mobs.target(LOCAL_PLAYER), 0, 5)
-    }
-    if (damage_buff.includes(player.name())) {
-        mobs.applyEffect(STRENGTH, mobs.target(LOCAL_PLAYER), 1, 3)
-    }
-    if (water_buff.includes(player.name())) {
-        mobs.applyEffect(WATER_BREATHING, mobs.target(LOCAL_PLAYER), 1, 255)
-    }
-    if (mining_buff.includes(player.name())) {
-        mobs.applyEffect(HASTE, mobs.target(LOCAL_PLAYER), 1, 3)
+    } else {
+        player.execute(
+        "title @s actionbar you cant have 2 buffs at once"
+        )
     }
 })
 player.onTravelled(SNEAK, function () {
     if (spy_buff.includes(player.name())) {
-        mobs.applyEffect(INVISIBILITY, mobs.target(LOCAL_PLAYER), 1, 255)
+        mobs.spawnParticle(CRITICAL_HIT, pos(0, 0, 0))
+        mobs.applyEffect(INVISIBILITY, mobs.target(LOCAL_PLAYER), 10, 255)
     }
 })
-let mining_buff = ""
-let spy_buff = ""
-let water_buff = ""
-let damage_buff = ""
-let speed_buff = ""
-let choose_buff = 0
-let Buff_owners = ""
-gameplay.title(mobs.target(ALL_PLAYERS), "Upgrade mode on!", "break wool to get")
-player.execute(
-"/give @a yellow_wool"
-)
