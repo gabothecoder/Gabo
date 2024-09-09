@@ -1,18 +1,32 @@
 player.onItemInteracted(ENDER_PEARL, function () {
-    mobs.applyEffect(BLINDNESS, mobs.target(LOCAL_PLAYER), 10, 255)
-    mobs.applyEffect(SPEED, mobs.target(LOCAL_PLAYER), 10, 15)
+    if (_1 == 0) {
+        mobs.applyEffect(BLINDNESS, mobs.target(LOCAL_PLAYER), 10, 255)
+        mobs.applyEffect(SPEED, mobs.target(LOCAL_PLAYER), 10, 15)
+        _1 = 60
+    } else {
+        player.execute(
+        "title @s actionbar wait " + _1 + "s before using again."
+        )
+    }
 })
 player.onItemInteracted(NETHER_STAR, function () {
-    mobs.applyEffect(REGENERATION, mobs.target(LOCAL_PLAYER), 10, 255)
-    mobs.applyEffect(SPEED, mobs.target(LOCAL_PLAYER), 10, 20)
-    mobs.applyEffect(STRENGTH, mobs.target(LOCAL_PLAYER), 1, 255)
-    mobs.applyEffect(JUMP_BOOST, mobs.target(LOCAL_PLAYER), 10, 30)
-    loops.pause(10000)
-    mobs.applyEffect(RESISTANCE, mobs.target(LOCAL_PLAYER), 10, 255)
-    mobs.applyEffect(MINING_FATIGUE, mobs.target(LOCAL_PLAYER), 10, 255)
-    mobs.applyEffect(WEAKNESS, mobs.target(LOCAL_PLAYER), 10, 255)
-    mobs.applyEffect(BLINDNESS, mobs.target(LOCAL_PLAYER), 10, 255)
-    mobs.applyEffect(SLOWNESS, mobs.target(LOCAL_PLAYER), 10, 255)
+    if (_2 == 0) {
+        _2 = 300
+        mobs.applyEffect(REGENERATION, mobs.target(LOCAL_PLAYER), 10, 255)
+        mobs.applyEffect(SPEED, mobs.target(LOCAL_PLAYER), 10, 20)
+        mobs.applyEffect(STRENGTH, mobs.target(LOCAL_PLAYER), 1, 255)
+        mobs.applyEffect(JUMP_BOOST, mobs.target(LOCAL_PLAYER), 10, 30)
+        loops.pause(10000)
+        mobs.applyEffect(RESISTANCE, mobs.target(LOCAL_PLAYER), 10, 255)
+        mobs.applyEffect(MINING_FATIGUE, mobs.target(LOCAL_PLAYER), 10, 255)
+        mobs.applyEffect(WEAKNESS, mobs.target(LOCAL_PLAYER), 10, 255)
+        mobs.applyEffect(BLINDNESS, mobs.target(LOCAL_PLAYER), 10, 255)
+        mobs.applyEffect(SLOWNESS, mobs.target(LOCAL_PLAYER), 10, 255)
+    } else {
+        player.execute(
+        "title @s actionbar wait " + _2 + "s before using again."
+        )
+    }
 })
 player.onItemInteracted(NETHERITE_PICKAXE, function () {
     mobs.spawnParticle(HEART, pos(0, 0, 0))
@@ -25,6 +39,16 @@ player.onItemInteracted(NETHERITE_SHOVEL, function () {
 })
 player.onItemInteracted(EXPERIENCE_BOTTLE, function () {
     mobs.applyEffect(HASTE, mobs.target(LOCAL_PLAYER), 10, 1)
+})
+loops.forever(function () {
+    if (_1 > 0.1) {
+        loops.pause(1000)
+        _1 += -1
+    }
+    if (_2 > 0.1) {
+        loops.pause(1000)
+        _2 += -1
+    }
 })
 player.onItemInteracted(NETHERITE_HOE, function () {
     mobs.spawnParticle(HEART, pos(0, 0, 0))
@@ -39,6 +63,10 @@ player.onItemInteracted(TRIDENT, function () {
 player.onItemInteracted(NETHERITE_AXE, function () {
     mobs.spawnParticle(HEART, pos(0, 0, 0))
 })
+let _2 = 0
+let _1 = 0
+_1 = 0
+_2 = 0
 gameplay.title(mobs.target(ALL_PLAYERS), "More MineCraft Fetures", "by gabo")
 for (let index = 0; index < 10; index++) {
     mobs.spawnParticle(TOTEM_PARTICLE, pos(0, 0, 0))
