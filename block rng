@@ -1,0 +1,27 @@
+loops.forever(function () {
+    if (cooldown > 0.1) {
+        loops.pause(1000)
+        cooldown += -1
+    }
+})
+player.onItemInteracted(STICK, function () {
+    if (cooldown == 0) {
+        item = randint(0, 861)
+        mobs.give(
+        mobs.target(LOCAL_PLAYER),
+        blocks.blockById(item),
+        1
+        )
+        player.execute(
+        "title @s actionbar you got item " + item
+        )
+        cooldown = 1
+    }
+})
+let item = 0
+let cooldown = 0
+player.execute(
+"give @a stick"
+)
+cooldown = 0
+n
