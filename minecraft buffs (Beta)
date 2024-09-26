@@ -63,15 +63,18 @@ player.onChat("\\\\buff", function () {
             }
             if (choose_buff == 4) {
                 gameplay.title(mobs.target(LOCAL_PLAYER), "you got...", "spy buff!")
-                if ("this".isEmpty()) {
+                if (spy_buff.isEmpty()) {
                     spy_buff = player.name()
+                    player.execute(
+                    "/ability @s mayfly true"
+                    )
                 } else {
                     spy_buff = "" + spy_buff + "," + player.name()
                 }
             }
             if (choose_buff == 5) {
                 gameplay.title(mobs.target(LOCAL_PLAYER), "you got...", "mining buff!")
-                if ("this".isEmpty()) {
+                if (mining_buff.isEmpty()) {
                     mining_buff = player.name()
                 } else {
                     mining_buff = "" + mining_buff + "," + player.name()
@@ -92,3 +95,4 @@ player.onTravelled(SNEAK, function () {
         mobs.applyEffect(INVISIBILITY, mobs.target(LOCAL_PLAYER), 10, 255)
     }
 })
+ 
