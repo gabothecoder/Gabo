@@ -1,11 +1,14 @@
 player.onChat("I Wish To Ascend...", function () {
-    allow = player.name()
-    player.execute(
-    "/give @s nether_Star"
-    )
-    player.execute(
-    "/title @s actionbar you Ascend into the final star...."
-    )
+    if (the_final_star_player == 0) {
+        allow = player.name()
+        the_final_star_player = 1
+        player.execute(
+        "/give @s nether_Star"
+        )
+        player.execute(
+        "/title @s actionbar you Ascend into the final star...."
+        )
+    }
 })
 player.onItemInteracted(NETHER_STAR, function () {
     if (allow == player.name() && cool_down == 0) {
@@ -48,6 +51,8 @@ player.onChat("\\\\info", function () {
 })
 let allow = ""
 let cool_down = 0
+let the_final_star_player = 0
+the_final_star_player = 0
 cool_down = 0
 player.execute(
 "/title @a actionbar you feel that something is wrong..."
