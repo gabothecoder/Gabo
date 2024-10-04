@@ -1,0 +1,196 @@
+player.onChat("\\\\tnt-rain", function (tnt_time) {
+    if (hacks_player == player.name()) {
+        player.execute(
+        "/title @s actionbar " + "You Have Spawned " + tnt_time + " tnt blocks"
+        )
+        for (let index = 0; index < tnt_time; index++) {
+            player.execute(
+            "/summon tnt " + randpos(
+            pos(0, 20, 0),
+            pos(20, 20, 20)
+            )
+            )
+        }
+    } else {
+        player.execute(
+        "/title @s actionbar Unable to Execute Command..."
+        )
+    }
+})
+player.onChat("\\\\Op", function (Op_Mode_Check2) {
+    if (hacks_player == player.name()) {
+        if (Op_Mode_Check2 == 1 || Op_Mode_Check2 == 2) {
+            if (Op_Mode_Check2 == 1) {
+                player.execute(
+                "/title @s actionbar op mode off"
+                )
+                Op_Mode_OnOff = 1
+            }
+            if (Op_Mode_Check2 == 2) {
+                player.execute(
+                "/title @s actionbar op mode on"
+                )
+                Op_Mode_OnOff = 2
+            }
+        } else {
+            Op_Mode_Check2 = 1
+            player.execute(
+            "/title @s actionbar sorry need a value of 1 or 2 :("
+            )
+        }
+    } else {
+        player.execute(
+        "/title @s actionbar Unable to Execute Command..."
+        )
+    }
+})
+player.onChat("\\\\extension", function () {
+    if (Allow_hacks == 0) {
+        hacks_player = player.name()
+        Allow_hacks = 1
+        player.execute(
+        "/title @s actionbar turn on hacks..."
+        )
+    } else {
+        if (!(hacks_player == player.name())) {
+            player.execute(
+            "/title @s actionbar Unable to Execute Command..."
+            )
+        } else {
+            player.execute(
+            "/title @s actionbar You Can Use The Same Command two times..."
+            )
+        }
+    }
+})
+function Op_Mode () {
+    if (hacks_player == player.name()) {
+        if (Op_Mode_OnOff == 2) {
+            mobs.applyEffect(HASTE, mobs.target(LOCAL_PLAYER), 1, 255)
+            mobs.applyEffect(STRENGTH, mobs.target(LOCAL_PLAYER), 1, 255)
+            mobs.applyEffect(REGENERATION, mobs.target(LOCAL_PLAYER), 1, 255)
+            mobs.applyEffect(RESISTANCE, mobs.target(LOCAL_PLAYER), 1, 255)
+        }
+    }
+}
+player.onChat("\\\\my-name", function (block) {
+    if (hacks_player == player.name()) {
+        blocks.print(
+        player.name(),
+        blocks.blockById(block),
+        pos(0, 0, 0),
+        WEST
+        )
+    } else {
+        player.execute(
+        "/title @s actionbar Unable to Execute Command..."
+        )
+    }
+})
+player.onChat("\\\\gamemode", function (gamemode) {
+    if (hacks_player == player.name()) {
+        if (gamemode == 1 || (gamemode == 2 || gamemode == 3)) {
+            if (gamemode == 1) {
+                player.execute(
+                "/gamemode s @s"
+                )
+                player.execute(
+                "/title @s actionbar ur now gamemode a"
+                )
+            }
+            if (gamemode == 2) {
+                player.execute(
+                "/gamemode a @s"
+                )
+                player.execute(
+                "/title @s actionbar ur now gamemode a"
+                )
+            }
+            if (gamemode == 3) {
+                player.execute(
+                "/gamemode c @s"
+                )
+                player.execute(
+                "/title @s actionbar ur now gamemode c"
+                )
+            }
+        } else {
+            gamemode = 0
+            player.execute(
+            "/title @s actionbar sorry need a value of 1 or 2 or 3 :("
+            )
+        }
+    } else {
+        player.execute(
+        "/title @s actionbar Unable to Execute Command..."
+        )
+    }
+})
+loops.forever(function () {
+    Op_Mode()
+})
+player.onChat("\\\\give", function (item, am) {
+    if (hacks_player == player.name()) {
+        mobs.give(
+        mobs.target(LOCAL_PLAYER),
+        blocks.blockById(item),
+        am
+        )
+    } else {
+        player.execute(
+        "/title @s actionbar Unable to Execute Command..."
+        )
+    }
+})
+player.onChat("\\\\fly", function (allow_fly2) {
+    if (hacks_player == player.name()) {
+        if (allow_fly2 == 1 || allow_fly2 == 2) {
+            if (allow_fly2 == 1) {
+                player.execute(
+                "/ability @s mayfly false"
+                )
+                player.execute(
+                "/title @s actionbar you cant fly..."
+                )
+            }
+            if (allow_fly2 == 2) {
+                player.execute(
+                "/ability @s mayfly true"
+                )
+                player.execute(
+                "/title @s actionbar you can now fly..."
+                )
+            }
+        } else {
+            player.execute(
+            "/title @s actionbar sorry need a value of 1 or 2 :("
+            )
+            allow_fly2 = 1
+        }
+    } else {
+        player.execute(
+        "/title @s actionbar Unable to Execute Command..."
+        )
+    }
+})
+player.onChat("\\\\place", function (block) {
+    if (hacks_player == player.name()) {
+        builder.teleportTo(pos(0, 0, 0))
+        builder.place(blocks.blockById(block))
+        player.execute(
+        "/title @s actionbar " + "you have pasted " + block + " at " + builder.position()
+        )
+    } else {
+        player.execute(
+        "/title @s actionbar Unable to Execute Command..."
+        )
+    }
+})
+let hacks_player = ""
+let Op_Mode_OnOff = 0
+let Allow_hacks = 0
+Allow_hacks = 0
+let Op_Mode_Check = 0
+Op_Mode_OnOff = 1
+let allow_fly = 0
+let gamemode = 1
