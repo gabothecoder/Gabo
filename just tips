@@ -1,0 +1,92 @@
+loops.forever(function () {
+    loops.pause(1000)
+    if (!(time_for_a_tip == 0)) {
+        time_for_a_tip += -1
+    }
+})
+loops.forever(function () {
+    if (time_for_a_tip == 60) {
+        time_for_a_tip = 1
+        random_tip = randint(1, 15)
+        if (random_tip == 1) {
+            player.execute(
+            "title @a actionbar tip: jump into lava to heal"
+            )
+        }
+        if (random_tip == 2) {
+            player.execute(
+            "title @a actionbar tip: press alt+f4 for hacks"
+            )
+        }
+        if (random_tip == 3) {
+            player.execute(
+            "title @a actionbar tip: no one loves you"
+            )
+        }
+        if (random_tip == 4) {
+            player.execute(
+            "title @a actionbar tip: real"
+            )
+        }
+        if (random_tip == 5) {
+            player.execute(
+            "title @a actionbar tip: your live don't matter (In game)"
+            )
+        }
+        if (random_tip == 6) {
+            player.execute(
+            "title @a actionbar Tip: don't read the tips"
+            )
+        }
+        if (random_tip == 7) {
+            player.execute(
+            "title @a actionbar tip: shoot everyone (In game)"
+            )
+        }
+        if (random_tip == 8) {
+            player.execute(
+            "title @a actionbar tip: why"
+            )
+        }
+        if (random_tip == 9) {
+            player.execute(
+            "title @a actionbar tip: ur playing minecraft"
+            )
+        }
+        if (random_tip == 10) {
+            player.execute(
+            "title @a actionbar tip: there are 15 tip, this is tip 10"
+            )
+        }
+        if (random_tip == 11) {
+            player.execute(
+            "title @a actionbar tip: if your reading this, ur big"
+            )
+        }
+        if (random_tip == 12) {
+            player.execute(
+            "title @a actionbar tip: give me a tip"
+            )
+        }
+        if (random_tip == 13) {
+            player.execute(
+            "title @a actionbar tip: it takes 60 seconds for a tip to pop up"
+            )
+        }
+        if (random_tip == 14) {
+            player.execute(
+            "title @a actionbar tip: yes"
+            )
+        }
+        if (random_tip == 15) {
+            player.execute(
+            "title @a actionbar tip: ur wasting your time"
+            )
+        }
+    }
+})
+let time_for_a_tip = 0
+let random_tip = 0
+random_tip = 0
+time_for_a_tip = 60
+gameplay.title(mobs.target(LOCAL_PLAYER), "random minecraft features", "by gabothecoder")
