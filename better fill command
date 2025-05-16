@@ -1,0 +1,73 @@
+player.onChat("\\r-pos", function () {
+    if (devonoff == 1) {
+        posmax = 1
+        player.execute(
+        "title @s actionbar pos1 and pos 2 have been reset"
+        )
+    } else {
+        player.execute(
+        "title @s actionbar turn on dev-mode"
+        )
+    }
+})
+player.onChat("\\fill ", function (block_id) {
+    if (devonoff == 1) {
+        blocks.fill(
+        blocks.blockById(block_id),
+        pos1,
+        pos2,
+        FillOperation.Replace
+        )
+        player.execute(
+        "filled " + pos1 + " and " + pos2 + " with block id " + block_id
+        )
+    } else {
+        player.execute(
+        "title @s actionbar turn on dev-mode"
+        )
+    }
+})
+player.onChat("\\pos", function () {
+    if (devonoff == 1) {
+        if (posmax == 1) {
+            pos1 = player.position()
+            posmax += 1
+            player.execute(
+            "title @s actionbar pos1 set at " + pos1
+            )
+        } else if (posmax == 2) {
+            pos2 = player.position()
+            posmax += 1
+            player.execute(
+            "title @s actionbar pos2 set at " + pos2
+            )
+        } else {
+            player.execute(
+            "title @s actionbar val in pos1 and pos2"
+            )
+        }
+    } else {
+        player.execute(
+        "title @s actionbar turn on dev-mode"
+        )
+    }
+})
+player.onChat("\\dev", function () {
+    if (devonoff == 0) {
+        devonoff = 1
+        player.execute(
+        "title @s actionbar dev-mode on"
+        )
+    } else {
+        devonoff = 0
+        player.execute(
+        "title @s actionbar dev-mode off"
+        )
+    }
+})
+let pos2: Position = null
+let pos1: Position = null
+let devonoff = 0
+let posmax = 0
+posmax = 1
+devonoff = 0
